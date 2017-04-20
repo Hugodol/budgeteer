@@ -1,22 +1,13 @@
 body {
+  background-color: #47494c;
   color: black;
-  background-color: white;
 }
 
-.app {
-  width: 100%;
-}
-
-.main {
-  width: 50%;
+#main {
   margin: 0 auto;
   text-align: center;
 }
 
-.title {
-  text-align: center;
-}
-
-.create {
-  cursor: pointer;
+.hidden {
+  display: none;
 }

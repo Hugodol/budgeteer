@@ -4,6 +4,7 @@ import UpdateGas from './updateGas.jsx';
 import UpdateFood from './updateFood.jsx';
 import UpdateOther from './updateOther.jsx';
 import NavBar from './navBar.jsx';
+import CreateBudget from './createBudget.jsx'
 
 class App extends React.Component {
   constructor() {
@@ -11,14 +12,16 @@ class App extends React.Component {
     this.state = {
       gas: '0',
       food: '0',
-      other: '0'
+      other: '0',
+      hideMain: false,
+      showCreate: false
     };
   }
 
   componentWillMount() {
     axios.get('/budget')
       .then(res => {
-        this.setAmount(res.data[0])
+        this.setAmount(res.data[0]);
       })
       .catch(err => console.log(err));
   }
@@ -29,24 +32,40 @@ class App extends React.Component {
     this.setState({other: datas.other});
   }
 
+  hide() {
+    this.setState({hideMain: !this.state.hideMain});
+    this.setState({showCreate: !this.state.showCreate});
+  }
+
   render() {
+    let hideMain = this.state.hideMain ? 'hidden' : null;
+    let showCreate = this.state.showCreate ? null : 'hidden';
     return (
-      <div className="main">
+      <div>
         <NavBar
           setAmount={this.setAmount.bind(this)}
+          hide={this.hide.bind(this)}
         />
-        <UpdateGas
-          amount={this.state.gas}
-          setAmount={this.setAmount.bind(this)}
-        />
-        <UpdateFood
-          amount={this.state.food}
-          setAmount={this.setAmount.bind(this)}
-        />
-        <UpdateOther
-          amount={this.state.other}
-          setAmount={this.setAmount.bind(this)}
-        />
+        <div id="main" className={hideMain}>
+          <UpdateGas
+            amount={this.state.gas}
+            setAmount={this.setAmount.bind(this)}
+          />
+          <UpdateFood
+            amount={this.state.food}
+            setAmount={this.setAmount.bind(this)}
+          />
+          <UpdateOther
+            amount={this.state.other}
+            setAmount={this.setAmount.bind(this)}
+          />
+        </div>
+        <div className={showCreate}>
+          <CreateBudget
+            setAmount={this.setAmount.bind(this)}
+            hide={this.hide.bind(this)}
+          />
+        </div>
       </div>
     );
   }
