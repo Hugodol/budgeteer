@@ -1,35 +1,35 @@
 import React from 'react';
 import createBudget from '../helpers/createBudget.js';
-import {FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 const CreateBudget = (props) => {
   let gas = '0';
   let food = '0';
   let other = '0';
   return (
-    <div>
-      <h4>Set Initial Values</h4>
+    <div className="create">
+      <h3>Set Initial Values</h3>
       <form>
         <FormGroup controlId ="formControlsGas">
-          <ControlLabel>Gas</ControlLabel>
+          <ControlLabel>Gas:</ControlLabel>
           <FormControl onChange={e => {
             gas = e.target.value;
           }}/>
         </FormGroup>
         <FormGroup controlId ="formControlsFood">
-          <ControlLabel>Food</ControlLabel>
+          <ControlLabel>Food:</ControlLabel>
           <FormControl onChange={e => {
             food = e.target.value;
           }}/>
         </FormGroup>
         <FormGroup controlId ="formControlsOther">
-          <ControlLabel>Other</ControlLabel>
+          <ControlLabel>Other:</ControlLabel>
           <FormControl onChange={e => {
             other = e.target.value;
           }}/>
         </FormGroup>
       </form>
-      <button onClick={() => {
+      <Button onClick={() => {
         let values = {
           gas: gas,
           food: food,
@@ -37,7 +37,7 @@ const CreateBudget = (props) => {
         };
         createBudget(values, props.setAmount);
         props.hide();
-      }}>Create</button>
+      }}>Create</Button>
     </div>
   );
 }

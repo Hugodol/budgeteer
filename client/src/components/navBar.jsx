@@ -16,7 +16,7 @@ const NavBar = (props) => (
           onClick={() => {
             props.hide();
           }}
-        >create new Budget</NavItem>
+        >{props.name}</NavItem>
         <NavItem eventKey={2}>log out</NavItem>
       </Nav>
     </Navbar.Collapse>

@@ -8,6 +8,11 @@ body {
   text-align: center;
 }
 
+.create {
+  width: 50%;
+  margin-left: 10%;
+}
+
 .hidden {
   display: none;
 }

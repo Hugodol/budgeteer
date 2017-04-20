@@ -14,7 +14,8 @@ class App extends React.Component {
       food: '0',
       other: '0',
       hideMain: false,
-      showCreate: false
+      showCreate: false,
+      createName: true
     };
   }
 
@@ -35,16 +36,19 @@ class App extends React.Component {
   hide() {
     this.setState({hideMain: !this.state.hideMain});
     this.setState({showCreate: !this.state.showCreate});
+    this.setState({createName: !this.state.createName});
   }
 
   render() {
     let hideMain = this.state.hideMain ? 'hidden' : null;
     let showCreate = this.state.showCreate ? null : 'hidden';
+    let createName = this.state.createName ? 'create new Budget' : 'back to Budget';
     return (
       <div>
         <NavBar
           setAmount={this.setAmount.bind(this)}
           hide={this.hide.bind(this)}
+          name={createName}
         />
         <div id="main" className={hideMain}>
           <UpdateGas
