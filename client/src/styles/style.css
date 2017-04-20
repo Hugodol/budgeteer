@@ -1,0 +1,22 @@
+body {
+  color: black;
+  background-color: white;
+}
+
+.app {
+  width: 100%;
+}
+
+.main {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.create {
+  cursor: pointer;
+}
