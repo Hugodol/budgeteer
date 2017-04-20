@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import CreateWeek from './createWeek.jsx';
 import UpdateGas from './updateGas.jsx';
 import UpdateFood from './updateFood.jsx';
 import UpdateOther from './updateOther.jsx';
+import NavBar from './navBar.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -32,7 +32,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="main">
-        <CreateWeek
+        <NavBar
           setAmount={this.setAmount.bind(this)}
         />
         <UpdateGas
