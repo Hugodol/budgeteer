@@ -17,14 +17,13 @@ var allowCrossDomain = function(req, res, next) {
   }
 };
 
-
 // Router
 var router = require('./routes.js');
 
 var app = express();
 module.exports.app = app;
 
-var PORT = 3000;
+app.set('port', process.env.PORT || 3000);
 
 app.use(allowCrossDomain);
 app.use(morgan('dev'));
@@ -37,6 +36,6 @@ app.use(router);
 // serve client files
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.listen(PORT, function () {
-  console.log('listening on port', PORT);
+app.listen(app.get('port'), function () {
+  console.log('listening on port', app.get('port'));
 });

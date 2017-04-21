@@ -1,5 +1,4 @@
-const css = require('./styles/style.css');
-
+import css from './styles/style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';

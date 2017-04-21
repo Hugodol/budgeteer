@@ -6,6 +6,8 @@ import UpdateOther from './updateOther.jsx';
 import NavBar from './navBar.jsx';
 import CreateBudget from './createBudget.jsx'
 
+const test = () => (<div>hello world</div>);
+
 class App extends React.Component {
   constructor() {
     super();

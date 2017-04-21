@@ -1,8 +1,18 @@
 var Sequelize = require('Sequelize');
-var db = new Sequelize('budget', 'root', '260354hd', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
+  var db = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+    dialect:  'postgres',
+    protocol: 'postgres',
+    port:     match[4],
+    host:     match[3],
+    logging:  true
+  });
+} else {
+  var db = new Sequelize('budget', 'root', '260354hd', {
+    host: 'localhost',
+    dialect: 'mysql'
+  });
+}
 
 // Create table
 var Expense = db.define('Expense' , {

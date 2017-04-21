@@ -5,8 +5,10 @@ module.exports = {
     db.findAll()
       .then(function(results) {
         res.json(results);
+      })
+      .catch(function(err) {
+        console.log(err);
       });
-      // add catch
   },
   post: function(req, res) {
     db.create({
@@ -14,25 +16,30 @@ module.exports = {
       food: req.body.food,
       other: req.body.other,
     })
-    .then(function() {
-      res.sendStatus(201);
-    });
-      // add catch
+      .then(function() {
+        res.sendStatus(201);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   },
   put: function(req, res) {
     db.update(
-      req.body
-    , {where: {id:{$ne: null}}})
-    .then(function() {
-      res.json('successfully updated');
-    });
-      // add catch
+      req.body, {where: {id:{$ne: null}}})
+      .then(function() {
+        res.sendStatus(202);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   },
   delete: function(req, res) {
     db.destroy({truncate: {db}})
       .then(function() {
-        res.json('table cleared');
+        res.sendStatus(202);
+      })
+      .catch(function(err) {
+        console.log(err);
       });
-      // add catch
   }
 }
