@@ -1,6 +1,6 @@
 var Sequelize = require('Sequelize');
-if (process.env.HEROKU_POSTGRESQL_BRONZE_URL) {
-  var db = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
+if (process.env.DATABASE_URL) {
+  var db = new Sequelize(process.env.DATABASE_URL, {
     dialect:  'postgres',
     protocol: 'postgres',
     port:     match[4],
