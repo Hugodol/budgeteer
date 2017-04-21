@@ -1,4 +1,4 @@
-var Sequelize = require('Sequelize');
+var Sequelize = require('sequelize');
 if (process.env.DATABASE_URL) {
   var db = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
