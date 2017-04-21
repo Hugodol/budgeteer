@@ -3,7 +3,3 @@
 
 ## NPM ##
 node_modules/
-
-## WEBPACK ##
-bundle.js
-index.html
