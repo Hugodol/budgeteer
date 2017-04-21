@@ -1,11 +1,11 @@
 var Sequelize = require('Sequelize');
 if (process.env.DATABASE_URL) {
   var db = new Sequelize(process.env.DATABASE_URL, {
-    dialect:  'postgres',
+    dialect: 'postgres',
     protocol: 'postgres',
-    port:     match[4],
-    host:     match[3],
-    logging:  true
+    port: match[4],
+    host: match[3],
+    logging: true
   });
 } else {
   var db = new Sequelize('budget', 'root', '260354hd', {
