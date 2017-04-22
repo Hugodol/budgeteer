@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 
@@ -16,25 +17,34 @@ const SignIn = (props) => {
             }}
             onKeyUp={e => {
               if (e.keyCode === 13) {
-                // check to see if user is in db
+                // TODO: check to see if user is in db
                 props.setUsername(userName);
-                // redirect to main page
+                e.target.value = '';
+                props.signInHide();
+                axios.get('/budget/' + userName)
+                  .then(res => {
+                    props.setAmount(res.data);
+                  })
+                  .catch(err => console.log(err));
               }
             }}
           />
         </FormGroup>
         <div>OR</div>
         <FormGroup controlId ="formControlsCreateUser">
-          <ControlLabel>Create User:</ControlLabel>
+          <ControlLabel>Create New User:</ControlLabel>
           <FormControl
             onChange={e => {
               createName = e.target.value;
             }}
             onKeyUp={e => {
               if (e.keyCode === 13) {
-                // post username to db
-                props.setUsername(createName);
-                //redirect to main page
+                axios.post('budget/user/new', {user: createName})
+                  .then(props.setUsername(createName))
+                  .catch(function(err) {
+                    console.log(err);
+                  });
+                  props.signInHide();
               }
             }}
           />

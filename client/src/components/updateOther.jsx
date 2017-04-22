@@ -10,7 +10,7 @@ const UpdateOther = (props) => (
           let amount = props.amount;
           let newExpense = event.target.value;
           let value = getNewAmount('other', amount, newExpense);
-          addExpense(value, props.setAmount);
+          addExpense(value, props.setAmount, props.username);
           event.target.value = '';
         }
       }

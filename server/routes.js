@@ -5,6 +5,6 @@ router.get('/:name', controller.get);
 router.post('/:name', controller.post);
 router.put('/:name', controller.put);
 router.delete('/:name', controller.delete);
-router.post('/user', controller.postUser);
+router.post('/user/new', controller.postUser);
 
 module.exports = router;

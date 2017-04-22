@@ -17,16 +17,20 @@ class App extends React.Component {
       hideMain: false,
       showCreate: false,
       createClick: true,
+      signIn: false,
       username: null
     };
   }
 
   componentWillMount() {
-    axios.get('/budget/' + this.state.username)
-      .then(res => {
-        this.setAmount(res.data);
-      })
-      .catch(err => console.log(err));
+    if (!this.state.username) {
+      this.signInHide();
+    }
+    // axios.get('/budget/' + this.state.username)
+    //   .then(res => {
+    //     this.setAmount(res.data);
+    //   })
+    //   .catch(err => console.log(err));
   }
 
   setAmount(datas) {
@@ -45,13 +49,22 @@ class App extends React.Component {
     this.setState({createClick: !this.state.createClick});
   }
 
+  signInHide() {
+    this.setState({hideMain: !this.state.hideMain});
+    this.setState({signIn: !this.state.signIn});
+  }
+
   render() {
     let hideMain = this.state.hideMain ? 'hidden' : null;
     let showCreate = this.state.showCreate ? null : 'hidden';
     let createClick = this.state.createClick ? 'create new Budget' : 'back to Budget';
+    let hideSignIn = this.state.signIn ? null : 'hidden';
     return (
       <div>
         <NavBar
+          username={this.state.username}
+          setUsername={this.setUsername.bind(this)}
+          signInHide={this.signInHide.bind(this)}
           setAmount={this.setAmount.bind(this)}
           hide={this.hide.bind(this)}
           name={createClick}
@@ -59,26 +72,32 @@ class App extends React.Component {
         <div id="main" className={hideMain}>
           <UpdateGas
             amount={this.state.gas}
+            username={this.state.username}
             setAmount={this.setAmount.bind(this)}
           />
           <UpdateFood
             amount={this.state.food}
+            username={this.state.username}
             setAmount={this.setAmount.bind(this)}
           />
           <UpdateOther
             amount={this.state.other}
+            username={this.state.username}
             setAmount={this.setAmount.bind(this)}
           />
         </div>
         <div className={showCreate}>
           <CreateBudget
+            username={this.state.username}
             setAmount={this.setAmount.bind(this)}
             hide={this.hide.bind(this)}
           />
         </div>
-        <div>
+        <div className={hideSignIn}>
           <SignIn
-            setUsername={this.setUsername}
+            setAmount={this.setAmount.bind(this)}
+            setUsername={this.setUsername.bind(this)}
+            signInHide={this.signInHide.bind(this)}
           />
         </div>
       </div>

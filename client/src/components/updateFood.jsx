@@ -10,7 +10,7 @@ const UpdateFood = (props) => (
           let amount = props.amount;
           let newExpense = event.target.value;
           let value = getNewAmount('food', amount, newExpense);
-          addExpense(value, props.setAmount);
+          addExpense(value, props.setAmount, props.username);
           event.target.value = '';
         }
       }

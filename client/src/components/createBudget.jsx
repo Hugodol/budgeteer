@@ -35,7 +35,7 @@ const CreateBudget = (props) => {
           food: food,
           other: other
         };
-        createBudget(values, props.setAmount);
+        createBudget(values, props.setAmount, props.username);
         props.hide();
       }}>Create</Button>
     </div>

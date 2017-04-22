@@ -12,12 +12,18 @@ const NavBar = (props) => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav pullRight>
+        <NavItem>{props.username}</NavItem>
         <NavItem eventKey={1}
           onClick={() => {
             props.hide();
           }}
         >{props.name}</NavItem>
-        <NavItem eventKey={2}>log out</NavItem>
+        <NavItem eventKey={2}
+          onClick={() => {
+            props.setUsername(null);
+            props.signInHide();
+          }}
+        >log out</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
