@@ -21,7 +21,7 @@ var allowCrossDomain = function(req, res, next) {
 var router = require('./routes.js');
 
 var app = express();
-module.exports.app = app;
+// module.exports.app = app;
 
 app.set('port', process.env.PORT || 3000);
 
@@ -31,7 +31,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 // Set up routes
-app.use(router);
+app.use('/budget', router);
 
 // serve client files
 app.use(express.static(path.join(__dirname, '../client/dist')));

@@ -4,9 +4,8 @@ import UpdateGas from './updateGas.jsx';
 import UpdateFood from './updateFood.jsx';
 import UpdateOther from './updateOther.jsx';
 import NavBar from './navBar.jsx';
-import CreateBudget from './createBudget.jsx'
-
-const test = () => (<div>hello world</div>);
+import CreateBudget from './createBudget.jsx';
+import SignIn from './signin.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -17,14 +16,15 @@ class App extends React.Component {
       other: '0',
       hideMain: false,
       showCreate: false,
-      createName: true
+      createClick: true,
+      username: null
     };
   }
 
   componentWillMount() {
-    axios.get('/budget')
+    axios.get('/budget/' + this.state.username)
       .then(res => {
-        this.setAmount(res.data[0]);
+        this.setAmount(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -35,22 +35,26 @@ class App extends React.Component {
     this.setState({other: datas.other});
   }
 
+  setUsername(name) {
+    this.setState({username: name});
+  }
+
   hide() {
     this.setState({hideMain: !this.state.hideMain});
     this.setState({showCreate: !this.state.showCreate});
-    this.setState({createName: !this.state.createName});
+    this.setState({createClick: !this.state.createClick});
   }
 
   render() {
     let hideMain = this.state.hideMain ? 'hidden' : null;
     let showCreate = this.state.showCreate ? null : 'hidden';
-    let createName = this.state.createName ? 'create new Budget' : 'back to Budget';
+    let createClick = this.state.createClick ? 'create new Budget' : 'back to Budget';
     return (
       <div>
         <NavBar
           setAmount={this.setAmount.bind(this)}
           hide={this.hide.bind(this)}
-          name={createName}
+          name={createClick}
         />
         <div id="main" className={hideMain}>
           <UpdateGas
@@ -70,6 +74,11 @@ class App extends React.Component {
           <CreateBudget
             setAmount={this.setAmount.bind(this)}
             hide={this.hide.bind(this)}
+          />
+        </div>
+        <div>
+          <SignIn
+            setUsername={this.setUsername}
           />
         </div>
       </div>
