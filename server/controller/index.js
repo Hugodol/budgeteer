@@ -73,5 +73,18 @@ module.exports = {
       .catch(function(err) {
         console.log(err);
       });
+  },
+  getUser: function(req, res) {
+    users.find({where: {name: req.params.name}})
+      .then(function(user) {
+        if (user) {
+          res.json(true);
+        } else {
+          res.json(false);
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   }
 }

@@ -20,6 +20,7 @@ const NavBar = (props) => (
         >{props.name}</NavItem>
         <NavItem eventKey={2}
           onClick={() => {
+            props.setAmount({gas: '0', food: '0', other: '0'});
             props.setUsername(null);
             props.signInHide();
           }}
